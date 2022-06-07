@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,27 +21,29 @@ Route::get('/', function () {
 //     return view('welcome');
 // })->name('main');
 
-//crear rutas ejemplo
-Route::get('zonas', function (){
-    return 'Esta es la lista de todas las zonas';
-})->name('zonas.index');
+//crear rutas ejemplo despues de enseñar hacer rutas
+Route::get('products',[ProductController::class,'index'])->name('product.index');
+// Route::get('products', function (){
+//     return 'Esta es la lista de todos las products';
+// })->name('product.index');
 
-Route::get('zonas/{zona}', function ($zona){
-    return "Mostrar la zona {$zona}";
-})->name('zonas.show');
-Route::get('zonas/create', function (){
-    return "Crear una zona";
-})->name('zonas.show');
-Route::post('zonas', function (){
+Route::get('products/{product}', function ($product){
+    return "Mostrar la product {$product}";
+})->name('products.show');
+Route::get('products/{product}',[ProductController::class,'show'])->name('product.show');
+// Route::get('products/create', function (){
+//     return "Crear una product";
+// })->name('products.create');
+Route::post('products', function (){
    //
-})->name('zonas.store');
-Route::get('zonas/{zona}/edit', function ($zona){
-    return "Editar {$zona} esta zona";
-})->name('zonas.edit');
+})->name('products.store');
+Route::get('products/{product}/edit', function ($product){
+    return "Editar {$product} esta product";
+})->name('products.edit');
 
-Route::match(['put','patch'],'zonas/{zona}', function ($zona){
+Route::match(['put','patch'],'products/{product}', function ($product){
     //
- })->name('zonas.update');
- Route::delete('zonas/{zona}', function ($zona){
+ })->name('products.update');
+ Route::delete('products/{product}', function ($product){
   //
-})->name('zonas.destroy');
+})->name('products.destroy');
